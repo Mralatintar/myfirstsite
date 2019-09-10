@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>{% block title %}天天生鲜-首页{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="/static/buyer/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/buyer/css/main.css">
+	<script type="text/javascript" src="/static/buyer/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/static/buyer/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/static/buyer/js/slide.js"></script>
+
+</head>
+<body>
+	<div class="header_con">
+		<div class="header">
+			<div class="welcome fl">欢迎来到天天生鲜!</div>
+			<div class="fr">
+				<div class="login_info fl">
+					欢迎您：<em>天天生鲜</em>
+				</div>
+
+{#                登录下拉模板#}
+{#                  <li class="nav-item dropdown no-arrow">#}
+{#              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+{#                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ request.COOKIES.age }}+{{ request.COOKIES.username }}</span>#}
+{#                <img class="img-profile rounded-circle" src="/static/{{ request.COOKIES.photo }}">#}
+{#              </a>#}
+{#              <!-- Dropdown - User Information -->#}
+{#              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">#}
+{#                <a class="dropdown-item" href="#">#}
+{#                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>#}
+{#                  配置文件#}
+{#                </a>#}
+{#                <a class="dropdown-item" href="#">#}
+{#                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>#}
+{#                 设置#}
+{#                </a>#}
+{#                <a class="dropdown-item" href="#">#}
+{#                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>#}
+{#                  活动日志#}
+{#                </a>#}
+{#                <div class="dropdown-divider"></div>#}
+{#                <a class="dropdown-item" href="/Seller/logout/" data-toggle="modal" data-target="#logoutModal">#}
+{#                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>#}
+{#                  登出#}
+{#                </a>#}
+{#              </div>#}
+{#            </li>#}
+
+
+
+                    {% if request.COOKIES.username %}
+                        <div class="login_btn fl">
+                        <a href="/Buyer/user_center_info/">欢迎{{ request.COOKIES.email }}</a>
+					    <span>|</span>
+					    <a href="/Buyer/logout/">退出</a>
+                        </div>
+                    {% else %}
+                        <div class="login_btn fl">
+					    <a href="/Buyer/login/">登录</a>
+					    <span>|</span>
+					    <a href="/Buyer/register/">注册</a>
+                        </div>
+                     {% endif %}
+
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="/Buyer/user_center_info/">用户中心</a>
+					<span>|</span>
+					<a href="cart.html">我的购物车</a>
+					<span>|</span>
+					<a href="user_center_order.html">我的订单</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="search_bar clearfix">
+		<a href="/" class="logo fl"><img src="/static/buyer/images/tubiao111.png"></a>
+		<div class="search_con fl">
+			<input  id="search_key" type="text" class="input_text fl" name="" placeholder="搜索商品">
+			<input type="button" class="input_btn fr" name="" value="搜索" onclick="search()">
+		</div>
+		<div class="guest_cart fr">
+			<a href="#" class="cart_name fl">我的购物车</a>
+			<div class="goods_count fl" id="show_count">1</div>
+		</div>
+	</div>
+
+	<div class="navbar_con">
+		<div class="navbar">
+			<h1 class="fl">全部商品分类</h1>
+			<ul class="navlist fl">
+				<li><a href="/">首页</a></li>
+				<li class="interval">|</li>
+				<li><a href="">手机生鲜</a></li>
+				<li class="interval">|</li>
+				<li><a href="">抽奖</a></li>
+			</ul>
+		</div>
+	</div>
+    {% block content %}
+
+    {% endblock %}
+
+
+	<div class="footer">
+		<div class="foot_link">
+			<a href="#">关于我们</a>
+			<span>|</span>
+			<a href="#">联系我们</a>
+			<span>|</span>
+			<a href="#">招聘人才</a>
+			<span>|</span>
+			<a href="#">友情链接</a>
+		</div>
+		<p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
+		<p>电话：010-****888    京ICP备*******8号</p>
+	</div>
+	<script type="text/javascript" src="/static/buyer/js/slide.js"></script>
+	<script type="text/javascript">
+		BCSlideshow('focuspic');
+		var oFruit = document.getElementById('fruit_more');
+		var oShownum = document.getElementById('show_count');
+
+		var hasorder = localStorage.getItem('order_finish');
+
+		if(hasorder)
+		{
+			oShownum.innerHTML = '2';
+		}
+
+		oFruit.onclick = function(){
+			window.location.href = 'list.html';
+		};
+{#定义函数，函数search,定义把id为search_key的值赋给keyword，如果存在，执行url，也就是搜索的内容#}
+		function search() {
+            var  keywords=$("#search_key").val();
+            if (keywords){
+                var url= "/Buyer/goods_list/?type=k&keywords="+keywords;
+                window.location.href=url
+            }
+        }
+
+	</script>
+{% block script %}
+{% endblock %}
+</body>
+</html>

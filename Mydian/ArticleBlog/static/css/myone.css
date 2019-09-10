@@ -1,0 +1,46 @@
+       body{
+            background:pink url("/static/images/bjt.jpg") no-repeat left top;
+            background-size: 100%;
+        }
+       h1{
+            color: cornflowerblue;
+            font-size: 60px;
+            text-align: center;
+        }
+        p{
+            text-align: center;
+        }
+        input{
+            font-size: 36px;
+            width: 30%;
+            margin-bottom: 20px;
+            border-radius: 16px;
+        }
+        form{
+            margin-top: 4%;
+        }
+         .submit{
+            color: white;
+            background-color: red;
+            font-size: 23px;
+            width: 28%;
+        }
+        .submit:hover{
+            transition-duration: 0.6s;
+            animation-iteration-count: revert;
+            color: white;
+            background-color: #6495ED;
+            font-size: 23px;
+            width: 18%;
+        }
+        .bian{
+            color: blue;
+        }
+         .bian:hover{
+            color: red;
+        }
+       form span{
+            text-align: center;
+            color: red;
+            display:block ;
+        }

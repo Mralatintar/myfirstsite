@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <script src="/static/js/vue.min.js"></script>
+</head>
+<body>
+{% verbatim %}
+<div id="panel">
+    我叫{{ name }}
+<hr>
+<p v-bind:id="style">
+    动态更改id传参
+</p>
+<hr>
+<p v-if="gender">
+    我是判断绑定
+</p>
+<hr>
+<p v-for="p in project">{{ p }}</p>
+    <button v-on:click="alert">点击我吧</button>
+</div>
+{% endverbatim %}
+<script>
+    var vue = new Vue(
+        {
+            el: "#panel",
+            data: {
+                name: "胡清杰",
+                style: "red",
+                gender: 0,
+                project:["python","php","java","js"]
+            },
+            methods:{
+                "alert":function () {
+                    alert("你好啊。孩子")
+                }
+            }
+        }
+    )
+</script>
+</body>
+</html>

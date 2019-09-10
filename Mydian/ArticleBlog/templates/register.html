@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <script src="/static/jq/jquery.min.js">
+    </script>
+        <link rel="stylesheet" href="/static/css/myone.css">
+{#    <style>#}
+{#        body{#}
+{#            background: pink url("/static/images/bjt.jpg") no-repeat left top;#}
+{#            background-size: 100%;#}
+{#        }#}
+{#        p{#}
+{#            text-align: center;#}
+{#        }#}
+{#        form{#}
+{#            margin-top: 4%;#}
+{#        }#}
+{#        input{#}
+{#            font-size: 36px;#}
+{#            width: 30%;#}
+{#            margin-bottom: 20px;#}
+{#            border-radius: 16px;#}
+{#        }#}
+{#        .submit{#}
+{#            color: white;#}
+{#            background-color: red;#}
+{#            font-size: 23px;#}
+{#            width: 28%;#}
+{#        }#}
+{#        .submit:hover{#}
+{#            transition-duration: 2.5s;#}
+{#            animation-iteration-count: revert;#}
+{#            color: white;#}
+{#            background-color: #6495ED;#}
+{#            font-size: 24px;#}
+{#            width: 18%;#}
+{#        }#}
+{#        h1{#}
+{#            color: cornflowerblue;#}
+{#            font-size: 60px;#}
+{#            text-align: center;#}
+{#        }#}
+{#        form span{#}
+{#            text-align: center;#}
+{#            color: red;#}
+{#            display:block ;#}
+{#        }#}
+{#         .bian{#}
+{#            color: blue;#}
+{#        }#}
+{#         .bian:hover{#}
+{#            color: red;#}
+{#        }#}
+{#    </style>#}
+</head>
+<body>
+
+<h1 class="">用户注册</h1>
+ <form method="post">
+     {% csrf_token %}
+
+     <p>
+     <input id="username" type="text" name="username" placeholder="用户名">
+     </p>
+     <span id="errormeg1" ></span>
+       <p>
+     <input id="email" type="text" name="email" placeholder="邮箱">
+        </p>
+     <span  id="errormeg" ></span>
+       <p>
+     <input type="password" name="password" id="password" placeholder="密码">
+         </p>
+          <p>
+     <input type="password" name="p_password" id="p_password" placeholder="确认密码">
+            </p>
+{#      <span  id="errormeg2" >{{ kk }}</span>#}
+        <p>
+     <input class="submit" type="submit" name="注册">
+ </p>
+ </form>
+<p><a href="/login/" class="bian">返回登录</a></p>
+<p style="color: red" id="errormeg"></p>
+<p style="color: red" id="errormeg1"></p>
+{#<p style="color: red" id="errormeg2"></p>#}
+
+<script>
+
+    $("#email").blur(
+        function () {
+            var em=$("#email").val();
+            var url="/user_valid/?email="+em;
+            console.log(url);
+            if (em){
+                $.ajax(
+                    {
+                        url:url,
+                        type:"get",
+                        data:"",
+                        success:function (data) {
+                            content=data["data"];
+                            $("#errormeg").text(content)
+                        },
+                        error:function (error) {
+                            console.log(error)
+                        }
+                    }
+                )
+            }
+        }
+    );
+
+
+    $("#username").blur(
+        function () {
+            var un=$("#username").val();
+            var url="/yonghu_valid/?username="+un;
+            console.log(url);
+            if (un){
+                $.ajax(
+                    {
+                        url:url,
+                        type:"get",
+                        data:"",
+                        success:function (data) {
+                            content=data["data"];
+                            $("#errormeg1").text(content)
+                        },
+                        error:function (error) {
+                            console.log(error)
+                        }
+                    }
+                )
+            }
+        }
+    );
+
+    {#function f() {#}
+    {#     var pd=$("password").val();#}
+    {#     var ppd=$("p_password").val();#}
+    {#     if (pd!==ppd){#}
+    {#         var kk='密码不同步'#}
+    {#     }#}
+    {##}
+</script>
+{##}
+{#<p>#}
+{#    <script>#}
+        {#if {{succed}};#}
+{#            $(#}
+{#            function () {#}
+{#                alert("注册用户{{ register_form.username }}成功")#}
+{#                }#}
+{#            )#}
+{#    </script>#}
+{#    alert('')#}
+{#    <input type="button" >#}
+{#    {{ succeed }}#}
+{#{{ errors }}#}
+{#</p>#}
+{##}
+{#<form action="" method="post">#}
+{##}
+{#{% csrf_token %}#}
+{#    账号：<input type="text" name="username">#}
+{#    <br>#}
+{#    密码：<input type="password" name="password">#}
+{#    <br>#}
+{#    <br>#}
+{#    &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="我是提交">#}
+{#</form>#}
+
+</body>
+</html>

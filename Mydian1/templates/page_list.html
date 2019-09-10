@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        a{
+            text-decoration: none;
+            color:orange;
+        }
+        a:hover{
+            text-decoration: none;
+            color: yellow;
+        }
+        li{
+            list-style: none;
+        }
+        .article_table{
+            font-size: 25px;
+            margin: 100px auto;
+        }
+        .article_table tr{
+            border: black 1px solid;
+            width: 700px;
+            height: 48px;
+        }
+        .article_table tr td{
+            width: 200px;
+            height: 48px;
+        }
+        .article_table tr td:hover{
+            width: 200px;
+            height: 48px;
+            color: green;
+        }
+
+
+
+
+        .article_table tr td img{
+            width: 100px;
+            height: 100px;
+            {#transform:rotate(10deg);#}
+        }
+        .article_table tr td img:hover{
+            width: 100px;
+            height: 100px;
+            transition-delay:0.0001s;
+            transition-duration:0.4s;
+            transform: scale(1.1);
+        }
+
+
+        .heihei{
+            margin: 50px;
+            color: red;
+            font-size: 50px
+        }
+        .heihei:hover{
+            animation-duration: 500ms;
+            animation-delay:200ms ;
+            animation-name:biaoti;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+        @keyframes biaoti {
+            to{
+                {#margin: 50px;#}
+                color: blue;
+                font-size: 51px
+            }
+        }
+    </style>
+
+
+</head>
+<body bgcolor="#ffc0cb">
+    <table class="article_table">
+        <caption class="heihei">2019畅销书籍</caption>
+        {% for art in articles %}
+        <tr>
+            <td>{{ art.id }}</td>
+            <td><a href="/page/{{ art.id }}/"><img src="/static/{{ art.image }}" alt=""></a></td>
+            <td><a href="/page/{{ art.id }}/">{{ art.title }}</a></td>
+            <td>{{ art.author }}</td>
+            <td>{{ art.public_time }}</td>
+
+
+        </tr>
+        {% endfor %}
+
+
+</table>
+
+
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block style %}
+     <link href="/static/css/index.css" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+
+{#<div style="width:100%;text-align:center">#}
+{#<form >#}
+{#    <input type="text" name="MyKey">#}
+{#    <input type="submit" value="按我提交">#}
+{#</form>#}
+
+
+<div class="container">
+
+    <div class="about_box">
+      <h2 class="nh1"><span>您现在的位置是：<a href="/" target="_blank">网站首页</a>>><a href="#" target="_blank">搜索:{{ searchkey }}</a></span><b>搜索【{{ searchkey }}】,一共有【{{addx }}】个结果</b></h2>
+      <div class="dtxw box">
+
+
+{% for art in articles %}
+
+        <li>
+          <div class="dttext f_l">
+            <ul>
+              <h2><a href="/new/{{ art.id }}">{{ art.title }}</a></h2>
+              <p>{{ art.description }}</p>
+              <span>{{ art.public_time }}</span>
+            </ul>
+          </div>
+          <div class="xwpic f_r"><a href="../new/{{ art.id }}"><img src="/static/{{ art.picture }}"></a></div>
+        </li>
+{#<a href="../new/{{ art.id }}">#}
+{#{{ art.title }}#}
+{#</a>#}
+{#<tr>#}
+{% endfor %}
+
+      </div>
+    </div>
+</div>
+{% endblock %}

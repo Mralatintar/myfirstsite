@@ -1,0 +1,71 @@
+{% extends "base.html"%}
+
+{% block title %}
+    个人中心
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block label %}
+    个人中心
+{% endblock %}
+
+
+{#{% block denglvname %}#}
+{# {{ user.username }}#}
+{#{% endblock %}#}
+{#{% block denglvphoto %}#}
+{#    /static/{{ user.photo }}#}
+{#{% endblock %}#}
+
+
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data" action="/personal_info/">
+    {% csrf_token %}
+    <table class="table">
+        <tr>
+            <td rowspan="3" width="200px"><img src="/static/{{ user.photo}}" width="200px" height="200px" >
+                <input type="file" name="photo">
+            </td>
+            <th>姓名</th>
+            <td><input name="username" value="{{ user.username }}"></td>
+            <th>性别</th>
+            <td><input name="gender" value="{{ user.gender }}"></td>
+        </tr>
+    <tr>
+
+
+            <th>年龄</th>
+            <td><input name="age" value="{{ user.age}}"></td>
+            <th>email</th>
+            <td><input name="email" value="{{ user.email }}"></td>
+    </tr>
+     <tr>
+
+
+            <th>电话</th>
+            <td><input name="phone_number" value="{{ user.phone_number }}"></td>
+            <th>地址</th>
+            <td><input name="address" value="{{ user.address }}"></td>
+    </tr>
+    <th colspan="5" style="text-align: center">
+
+    <input type="submit" value="提交" class="btn btn-warning btn-block">
+{#    <td colspan="5" style="text-align: center;></td>#}
+
+    </th>
+
+    </table>
+</form>
+
+
+
+{% endblock %}
+
+
+
+
+{% block script %}
+{% endblock %}

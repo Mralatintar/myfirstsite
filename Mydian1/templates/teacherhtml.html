@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>教师表</title>
+</head>
+<body style="text-align: center">
+<h1>这就是教师表</h1>
+<div>
+    <table border="1px"style="margin: auto">
+
+        <thead>
+            <tr>
+                <th>
+                    姓名
+                </th>
+                <th>
+                    年龄
+                </th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+        {% for t in teacher%}
+            <tr>
+            <td align="center">{{ t.name }}</td>
+            <td align="center">{{ t.age }}</td>
+        {% endfor %}
+        </tbody>
+
+    </table>
+<p>{{ commit}}</p>
+</div>
+</body>
+</html>
